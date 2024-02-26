@@ -1,7 +1,12 @@
-export default function Home() {
+import Hero from "@/components/hero";
+import homeImg from "../../public/home.jpg";
+
+export default function HomePage() {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <Hero
+      imgData={homeImg}
+      imgAlt="Car Factory"
+      title="Professional Cloud Hosting"
+    />
   );
 }
