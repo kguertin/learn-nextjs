@@ -7,6 +7,7 @@ import { z } from "zod";
 import { auth } from "@/auth";
 import paths from "@/paths";
 import { db } from "@/db";
+import { error } from "console";
 
 const createPostSchema = z.object({
   title: z.string().min(3, { message: "Title must be 3 characters or longer" }),
@@ -38,6 +39,12 @@ export async function createPost(
     };
   }
 
+  const session = await auth();
+  if (!session || !session.user) {
+    return {
+      errors: { _form: ["You must be signed in to do this"] },
+    };
+  }
   return {
     errors: {},
   };
