@@ -7,6 +7,9 @@ export type PostWithData = Post & {
   _count: { comments: number };
 };
 
+// This is a type that is created by the return type of the function can avoid complexity in type definitions (see above) but does not scale well
+// export type PostWithData = Awaited<ReturnType<typeof fetchPostsByTopicSlug>>[]
+
 export async function fetchPostsByTopicSlug(
   slug: string
 ): Promise<PostWithData[]> {
