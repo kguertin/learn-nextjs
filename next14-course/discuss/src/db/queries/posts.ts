@@ -10,10 +10,8 @@ export type PostWithData = Post & {
 // This is a type that is created by the return type of the function can avoid complexity in type definitions (see above) but does not scale well
 // export type PostWithData = Awaited<ReturnType<typeof fetchPostsByTopicSlug>>[]
 
-export async function fetchPostsByTopicSlug(
-  slug: string
-): Promise<PostWithData[]> {
-  return await db.post.findMany({
+export function fetchPostsByTopicSlug(slug: string): Promise<PostWithData[]> {
+  return db.post.findMany({
     where: { topic: { slug } },
     include: {
       topic: { select: { slug: true } },
